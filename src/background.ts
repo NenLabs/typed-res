@@ -6,7 +6,7 @@ browser.runtime.onInstalled.addListener((details) => {
   console.log("Extension installed:", details);
 });
 
-Browser.devtools.panels.create("TypedRes",
+browser.devtools.panels.create("TypedRes",
     "/icon-with-shadow.svg",
     "src/popup.html",
 );
