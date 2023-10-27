@@ -8,12 +8,21 @@
     "96": "icon/96.png",
     "128": "icon/128.png"
   },
-  "{{chrome}}.action": {
-    "default_popup": "src/popup.html"
-  },
-  "{{firefox}}.browser_action": {
-    "default_popup": "src/popup.html"
-  },
+  "{{chrome}}.devtools_page": "src/popup.html",
+  "{{chrome}}.permissions": [
+    "tabs",
+    "activeTab",
+    "webRequest"
+  ],
+  "{{firefox}}.devtools_page": "src/popup.html",
+  "{{firefox}}.permissions": [
+    "tabs",
+    "activeTab",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "background": {
     "{{chrome}}.service_worker": "src/background.ts",
     "{{firefox}}.scripts": ["src/background.ts"]
