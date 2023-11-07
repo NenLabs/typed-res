@@ -1,12 +1,6 @@
 <script lang="ts" setup>
 import Browser from 'webextension-polyfill';
 
-console.log("Hello from the popup!");
-
-Browser.runtime.onInstalled.addListener((details) => {
-  console.log("Extension installed:", details);
-});
-
 Browser.devtools.panels.create("TypedRes",
     "icon/16.png",
     "src/popup.html",
