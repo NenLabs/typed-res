@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "test": "vitest -u"
+    "test": "vitest run --coverage"
   },
   "dependencies": {
     "vue": "^3.2.47"
@@ -14,6 +14,8 @@
   "devDependencies": {
     "@types/webextension-polyfill": "^0.10.0",
     "@vitejs/plugin-vue": "^4.0.0",
+    "@vitest/coverage-istanbul": "^0.34.6",
+    "jsdom": "^22.1.0",
     "typescript": "^4.9.5",
     "unocss": "^0.57.2",
     "vite": "^4.1.4",

@@ -1,5 +1,5 @@
 import UnoCSS from 'unocss/vite';
-import { defineConfig } from "vite";
+import { defineConfig } from 'vitest/config'
 import vue from "@vitejs/plugin-vue";
 import webExtension, { readJsonFile } from "vite-plugin-web-extension";
 
@@ -24,4 +24,19 @@ export default defineConfig({
       watchFilePaths: ["package.json", "manifest.json"],
     }),
   ],
+  test: {
+    environment: 'jsdom',
+    include: ['src/**/*.test.ts'],
+    deps: {
+      inline: ['@vue'],
+    },
+    coverage: {
+      provider: 'istanbul',
+      reporter: ['text', 'json-summary', 'json', 'html'],
+      lines: 80,
+      branches: 80,
+      functions: 80,
+      statements: 80
+    }
+  }
 });
