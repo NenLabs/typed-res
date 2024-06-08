@@ -20,7 +20,8 @@ export async function getManifest(): Promise<Manifest.WebExtensionManifest> {
       open_in_tab: true
     },
     background: {
-      service_worker: 'background.js'
+      service_worker: 'background.js',
+      persistent: true
     },
     content_scripts: [
       {
@@ -33,7 +34,7 @@ export async function getManifest(): Promise<Manifest.WebExtensionManifest> {
       48: './assets/icon-512.png',
       128: './assets/icon-512.png'
     },
-    permissions: ['contextMenus', 'storage'],
+    permissions: ['contextMenus', 'storage', 'webRequest', 'webRequestBlocking', '<all_urls>'],
     optional_permissions: ['*://*/*'],
     content_security_policy: {}
   }

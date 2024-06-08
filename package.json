@@ -1,7 +1,7 @@
 {
   "name": "chrome-ext-mv3-starter",
-  "displayName": "[name]",
-  "description": "[description]",
+  "displayName": "TypedRes",
+  "description": "🧩 A browser extension that converts HTTP response objects to their exact typescript interfaces.",
   "version": "0.0.1",
   "private": true,
   "scripts": {

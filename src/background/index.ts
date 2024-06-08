@@ -27,7 +27,7 @@ chrome.tabs.onActivated.addListener(async ({ tabId }) => {
   )
 })
 
-onMessage('get-current-tab', async () => {
+onMessage('get-current-tab', async (): Promise<any> => {
   try {
     const tab = await chrome.tabs.get(previousTabId)
     return {
