@@ -2,11 +2,11 @@ name: Upload to Chrome Web Store
 
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - main
 
 jobs:
-  upload:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
