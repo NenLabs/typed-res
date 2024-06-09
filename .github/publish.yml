@@ -1,0 +1,56 @@
+name: Publish Extension
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build extension
+        run: npm run build # Adjust this based on your build script
+
+      - name: Compress extension
+        run: zip -r extension.zip extension/prod/ # Adjust the path if needed
+
+      - name: Upload Extension to Chrome Web Store
+        uses: rynomatic/chrome-extension-publish-action@v2.0.0
+        with:
+          extension_id: ${{ secrets.EXTENSION_ID }}
+          client_id: ${{ secrets.CLIENT_ID }}
+          client_secret: ${{ secrets.CLIENT_SECRET }}
+          refresh_token: ${{ secrets.REFRESH_TOKEN }}
+          zip_path: ./extension.zip
+          publish_target: 'default' # or 'trustedTesters'
+
+      - name: Notify on failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: GitHub Actions - ${{ github.workflow }} - ${{ github.event_name }}
+          to: dialaegwuchukwu@gmail.com
+          from: ${{ secrets.EMAIL_USERNAME }}
+          body: |
+            The GitHub Actions workflow has failed.
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref }}
+            Commit Message: ${{ github.event.head_commit.message }}
+            Author: ${{ github.event.head_commit.author.name }}
